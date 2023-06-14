@@ -1,15 +1,41 @@
 <template lang="">
   <div>
-    <h1>Main</h1>
+    <h1>Today I learned</h1>
+    <LoadingSpinner v-if="isLoading"></LoadingSpinner>
+    <ul v-else>
+      <PostListItem
+        v-for="postItem in postItems"
+        :key="postItem._id"
+        :postItem="postItem"
+      ></PostListItem>
+      <!-- <li v-for="postItem in postItems" :key="postItem._id">
+        <div class="post-title">{{ postItem.title }}</div>
+        <div class="post-contents">{{ postItem.contents }}</div>
+        <div class="post-time">{{ postItem.createdAt }}</div>
+      </li> -->
+    </ul>
   </div>
 </template>
 <script>
+import PostListItem from "@/components/posts/PostListItem.vue";
+import LoadingSpinner from "@/components/common/LoadingSpinner.vue";
 import { fetchPosts } from "@/api/index";
 export default {
+  components: {
+    PostListItem,
+  },
+  data() {
+    return {
+      postItems: [],
+      isLoading: false,
+    };
+  },
   methods: {
     async fetchData() {
-      const response = await fetchPosts();
-      console.log(response);
+      this.isLoading = true;
+      const { data } = await fetchPosts();
+      this.isLoading = false;
+      this.postItems = data.posts;
     },
   },
 

@@ -18,6 +18,7 @@
 import axios from "axios";
 import { loginUser } from "@/api/index";
 import { validateEmail } from "@/utils/validation";
+import { saveAuthToCookie, saveUserToCookie } from "@/utils/cookies";
 export default {
   data() {
     return {
@@ -46,6 +47,8 @@ export default {
         this.$store.commit("setToken", data.token);
         //로그인 페이지로 이동
         this.$store.commit("setUsername", data.user.username);
+        saveAuthToCookie(data.token);
+        saveUserToCookie(data.user.username);
         //console.log(data.user.username);
         this.$router.push("/main");
         //this.logMessage = `${data.user.username} 님 환영합니다.`;
