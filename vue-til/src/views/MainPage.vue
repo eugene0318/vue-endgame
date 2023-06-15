@@ -1,19 +1,22 @@
 <template lang="">
   <div>
-    <h1>Today I learned</h1>
-    <LoadingSpinner v-if="isLoading"></LoadingSpinner>
-    <ul v-else>
-      <PostListItem
-        v-for="postItem in postItems"
-        :key="postItem._id"
-        :postItem="postItem"
-      ></PostListItem>
-      <!-- <li v-for="postItem in postItems" :key="postItem._id">
+    <div>
+      <h1>Today I learned</h1>
+      <LoadingSpinner v-if="isLoading"></LoadingSpinner>
+      <ul v-else>
+        <PostListItem
+          v-for="postItem in postItems"
+          :key="postItem._id"
+          :postItem="postItem"
+        ></PostListItem>
+        <!-- <li v-for="postItem in postItems" :key="postItem._id">
         <div class="post-title">{{ postItem.title }}</div>
         <div class="post-contents">{{ postItem.contents }}</div>
         <div class="post-time">{{ postItem.createdAt }}</div>
       </li> -->
-    </ul>
+      </ul>
+    </div>
+    <router-link to="/add" class="create-button">+</router-link>
   </div>
 </template>
 <script>
