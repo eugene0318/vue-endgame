@@ -17,7 +17,7 @@
   </form>
 </template>
 <script>
-import { registerUser } from "@/api/index";
+import { registerUser } from "@/api/auth";
 export default {
   data() {
     return {

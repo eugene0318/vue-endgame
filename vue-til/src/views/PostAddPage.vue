@@ -1,9 +1,14 @@
 <template lang="">
-  <div>
-    <h1>생성 페이지</h1>
+  <div class="form-container">
+    <PostAddForm></PostAddForm>
   </div>
 </template>
 <script>
-export default {};
+import PostAddForm from "@/components/posts/PostAddForm.vue";
+export default {
+  components: {
+    PostAddForm,
+  },
+};
 </script>
 <style lang=""></style>
