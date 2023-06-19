@@ -31,5 +31,9 @@ export default new VueRouter({
       path: "*",
       component: () => import("@/views/PageNotFound.vue"),
     },
+    {
+      path: "/post/:id",
+      component: () => import("@/views/PostEditPage.vue"),
+    },
   ],
 });
