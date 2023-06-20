@@ -1,8 +1,9 @@
 <template>
   <header>
-    <div>
-      <router-link to="/" class="logo">TIL</router-link>
-    </div>
+    <router-link :to="logoLink" class="logo">
+      TIL
+      <span v-if="isUserLogin">by {{ $store.state.username }}</span>
+    </router-link>
     <div class="navigation">
       <template v-if="isUserLogin">
         <span>{{ $store.state.username }}</span>
@@ -22,8 +23,10 @@ export default {
     isUserLogin() {
       return this.$store.getters.isLogin;
     },
+    logoLink() {
+      return this.$store.getters.isLogin ? "/main" : "/login";
+    },
   },
-
   methods: {
     logoutUser() {
       this.$store.commit("clearUsername");
